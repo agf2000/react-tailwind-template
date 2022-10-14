@@ -1,0 +1,103 @@
+import create from 'zustand';
+import { devtools } from 'zustand/middleware';
+// import axios from 'axios';
+// import apiService from '../common/services/api';
+
+let storeUtils = (set, get) => ({
+	dateOptions: [
+		{ label: 'SELECIONAR...', value: 'SELECIONAR...' },
+		{ label: 'DATA RESOLVIDO', value: 'dataResolvido' },
+		{ label: 'DATA CADASTRADO', value: 'data_Cadastro' },
+		{ label: 'DATA ALTERADO', value: 'data_Alteracao' },
+		{ label: 'DATA INICIADO', value: 'dataInicio' },
+		{ label: 'DATA TESTADO', value: 'dataTestado' },
+	],
+	searchOptions: [
+		{ label: 'SELECIONAR...', value: 'SELECIONAR...' },
+		{ label: 'INCLUÍDO POR', value: 'includedBy' },
+		{ label: 'DESTINADO A', value: 'assignedTo' },
+		{ label: 'RESOLVIDO POR', value: 'resolvedBy' },
+		{ label: 'INICIADO POR', value: 'initiatedBy' },
+		{ label: 'CÓDIGO DA TAREFA', value: 'taskId' },
+		{ label: 'TAREFA', value: 'task' },
+		{ label: 'CLIENTE', value: 'client' },
+		{ label: 'FUNCIONÁRIO', value: 'employee' },
+		{ label: 'MÓDULO', value: 'module' },
+		{ label: 'COMPLEXIDADE', value: 'complexity' },
+		{ label: 'DESCRIÇÃO DA SOLUÇÃO', value: 'solutionDesc' },
+		{ label: 'G.U.T', value: 'gut' },
+		{ label: 'GRAVIDADE', value: 'gravity' },
+		{ label: 'PROTOCOLO', value: 'protocol' },
+		{ label: 'SOLUÇÃO', value: 'solution' },
+		{ label: 'STATUS', value: 'status' },
+		{ label: 'TENDÊNCIA', value: 'tendency' },
+		{ label: 'PRIORIDADE', value: 'priority' },
+		{ label: 'VERSÃO', value: 'version' },
+		{ label: 'VERSÃO RESOLVIDO', value: 'resolvedVersion' },
+	],
+	taskTypeOptions: [
+		{ label: 'TODAS', value: 'TODAS' },
+		{ label: 'ALTERAÇÃO', value: '1' },
+		{ label: 'CRIAÇÃO', value: '2' },
+		{ label: 'ERRO DE SISTEMA', value: '3' },
+		{ label: 'ERRO OPERACIONAL', value: '4' },
+		{ label: 'SUGESTÃO', value: '5' },
+		{ label: 'TESTE', value: '6' },
+		{ label: 'MELHORIA', value: '7' },
+		{ label: 'MAL FUNCIONAMENTO', value: '8' },
+		{ label: 'AUXILIO AO SUPORTE', value: '9' },
+	],
+	statusOptions: [
+		{ label: 'TODOS', value: 'TODOS' },
+		{ label: 'Em Análise', value: '1' },
+		{ label: 'Reprovada', value: '2' },
+		{ label: 'Em Execução', value: '3' },
+		{ label: 'Testar', value: '4' },
+		{ label: 'Em Teste', value: '5' },
+		{ label: 'Testado', value: '6' },
+	],
+	urgencyOptions: [
+		{ label: 'TODAS', value: 'TODAS' },
+		{ label: '0 - INDEFINIDO', value: '0' },
+		{ label: '1 - PODE ESPERAR', value: '1' },
+		{ label: '2 - POUCO URGENTE', value: '2' },
+		{ label: '3 - O MAIS RÁPIDO POSSÍVEL', value: '3' },
+		{ label: '4 - URGENTE', value: '4' },
+		{ label: '5 - AÇÃO IMEDIATA', value: '5' },
+	],
+	tendencyOptions: [
+		{ label: 'TODAS', value: 'TODAS' },
+		{ label: '0 - INDEFINIDO', value: '0' },
+		{ label: '1 - NÃO VAI MUDAR', value: '1' },
+		{ label: '2 - PIORAR A LONGO PRAZO', value: '2' },
+		{ label: '3 - PIORAR', value: '3' },
+		{ label: '4 - PIORAR EM POUCO TEMPO', value: '4' },
+		{ label: '5 - PIORAR RAPIDAMENTE', value: '5' },
+	],
+	complexityOptions: [
+		{ label: 'TODAS', value: 'TODAS' },
+		{ label: '0 - INDEFINIDO', value: '1' },
+		{ label: '1 - MUITO FÁCIL', value: '2' },
+		{ label: '2 - FÁCIL', value: '3' },
+		{ label: '3 - MÉDIA', value: '4' },
+		{ label: '4 - DIFICIL', value: '5' },
+		{ label: '5 - MUITO DIFICIL', value: '6' },
+	],
+	gravityOptions: [
+		{ label: 'TODAS', value: 'TODAS' },
+		{ label: '0 - INDEFINIDO', value: '0' },
+		{ label: '1 - SEM GRAVIDADE', value: '1' },
+		{ label: '2 - POUCO GRAVE', value: '2' },
+		{ label: '3 - GRAVE', value: '3' },
+		{ label: '4 - MUITO GRAVE', value: '4' },
+		{ label: '5 - EXTRAMAMENTE GRAVE', value: '5' },
+	],
+	tasksPageSize: '100',
+	setTasksPageSize: (value) => set({ tasksPageSize: value }),
+	filterOn: true,
+	setFilterOn: (value) => set({ filterOn: value }),
+});
+
+storeUtils = devtools(storeUtils);
+
+export const useStoreUtils = create(storeUtils);
